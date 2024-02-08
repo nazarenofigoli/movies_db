@@ -5,7 +5,7 @@ const genresController = {
     list: function(req,res) {
         db.Movie.findAll()
         .then (function(movies){
-            res.render('moviesList',{movies:movies})
+            res.render('moviesList',{movies})
 
         })
 
