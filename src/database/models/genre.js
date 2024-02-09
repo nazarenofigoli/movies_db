@@ -1,36 +1,27 @@
-module.exports = (sequelize,dataTypes) => {
+module.exports = (sequelize,DataTypes) => {
 
     const alias = "Genre";
     const cols ={
         id:{
-            type:dataTypes.INTEGER,
+            type:DataTypes.INTEGER,
             allownull:false,
             primaryKey:true,
             autoIncrement:true,
             unsigne:true
         },
         name:{
-            type:dataTypes.STRING(100),
+            type:DataTypes.STRING(100),
             allownull:false
         },
         ranking:{
-            type:dataTypes.INTEGER,
+            type:DataTypes.INTEGER,
             allownull:false,
             unsigne:true
 
         },
         active:{
-            type:dataTypes.TINYINT(1),
+            type:DataTypes.TINYINT(1),
             allownull:false
-        },
-        createdAt: {
-            type: dataTypes.DATE,
-            field: 'created_at'
-        },
-    
-        updatedAt: {
-            type: dataTypes.DATE,
-            field: 'updated_at'
         }
     };
     const config={
