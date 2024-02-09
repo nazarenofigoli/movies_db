@@ -30,20 +30,10 @@ module.exports = (sequelize,DataTypes) => {
             type:DataTypes.INTEGER,
             allownull:false
         },
-        createdAt: {
-            type: DataTypes.DATE,
-            field: 'created_at'
-        },
-    
-        updatedAt: {
-            type: DataTypes.DATE,
-            field: 'updated_at'
-        }
-    
     };
     const config={
         tableName: "movies",
-        timestamp: false
+        timestamps: false
     };
 const movies = sequelize.define(alias,cols,config);
 return movies
