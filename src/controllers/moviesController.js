@@ -1,3 +1,4 @@
+const { where } = require('sequelize');
 const db =  require('../database/models/index.js')
 
 const genresController = {
@@ -14,7 +15,7 @@ const genresController = {
     detail:function(req,res) {
         db.Movie.findByPk(req.params.id)
         .then((movie) => {
-            res.render('moviesDetail',{movie})
+            res.render('moviesDetail',{movie:movie})
         })
             
         },
@@ -38,11 +39,63 @@ const genresController = {
         })
     },
 
-    
-    
+     //Aqui debemos modificar y completar lo necesario para trabajar con el CRUD
+     add: function (req, res) {
+    res.render('moviesAdd')
+    },
+    create:(req, res) =>{
+        db.Movie.create({
+            title: req.body.title,
+            rating: req.body.rating,
+            awards: req.body.awards,
+            release_date: req.body.release_date,
+            length: req.body.length
+        })
+        res.redirect('/movies')
+    },
+    edit: function(req, res) {
+        db.Movie.findByPk(req.params.id)
+            .then (movie => res.render('moviesEdit',{Movie:movie})
+    )
+    },
+    update: function (req,res) {
+        db.Movie.update({
+            title: req.body.title,
+            rating: req.body.rating,
+            awards: req.body.awards,
+            release_date: req.body.release_date,
+            length: req.body.length
+        }, {
+            where: {
+                id: req.params.id
+            },
+            then: res.redirect("/movies/detail/" + req.params.id)      
+        })
+        },
+
+
+
+    delete: function (req, res) {
+        db.Movie.findByPk(req.params.id)
+            .then (movie => res.render('moviesDelete',{Movie:movie})
+    )
+    },
+    destroy: function (req, res) {
+        db.Movie.destroy({
+            where:{
+                id: req.params.id
+            },
+        then: res.redirect("/movies")
+        })
+    }
+
     };
 
 
 
 
 module.exports = genresController;
+
+
+
+
